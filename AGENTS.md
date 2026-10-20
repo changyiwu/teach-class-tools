@@ -71,6 +71,7 @@ teach-class-tools/
 - 所有回應與文件使用繁體中文；Windows 指令優先使用 PowerShell
 - 修改前先檢查 Git 狀態，只處理本次任務相關變更
 - **用瀏覽器預覽驗證 canvas／`requestAnimationFrame` 動畫時，rAF 會被節流**：光是等待不會推進畫格，要連續截圖逼出重繪，或直接呼叫收尾函式驗結果
+- **產出一律放 `output/`**：本專案產生的檔案或資料夾（成品、匯出、報表、生成圖、渲染等）預設放專案根目錄的 `output/`，不另開 `outputs/`、`exports/`、`generated/`、`out/` 之類的資料夾，方便找；`output/` 不進 git。部署工具指定的建置目錄（`dist/`、`build/`）不在此限
 
 ## JavaScript 運作約束
 
