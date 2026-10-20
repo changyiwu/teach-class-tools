@@ -1,4 +1,4 @@
-# class-tools-2（班級工具箱）（專案藍圖）
+# teach-class-tools（班級工具箱）（專案藍圖）
 
 > 本檔為跨 Agent 通用的專案藍圖（AGENTS.md 開放標準）。任何 Agent 的每個 session 都應先讀本檔＋`handoff.md`。
 
@@ -21,7 +21,7 @@
 ## 資料夾結構
 
 ```
-class-tools-2/
+teach-class-tools/
 ├─ index.html            # 單一入口網頁與所有視圖的 HTML 骨架
 ├─ css/style.css         # 主題變數、玻璃擬態與全域排版
 ├─ public/js/
@@ -49,8 +49,8 @@ class-tools-2/
 | 層級 | 平台 | 位置 | 讀取時機 |
 |------|------|------|---------|
 | L1 | 本地（GDrive） | `AGENTS.md`＋`handoff.md` | 每個 session |
-| L2 | GitHub | https://github.com/changyiwu/class-tools-2 （公開） | 指定時 |
-| L3 | Obsidian | `class-tools-2/專案工作流程.md` | 有需要時 |
+| L2 | GitHub | https://github.com/changyiwu/teach-class-tools （公開） | 指定時 |
+| L3 | Obsidian | `teach-class-tools/專案工作流程.md` | 有需要時 |
 
 ## 三個檔案的職責（依「時效性」分家，不是依「詳細程度」）
 

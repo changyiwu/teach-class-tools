@@ -2,7 +2,7 @@
   --font-primary: 'Outfit', sans-serif;
   --font-accent: 'Fredoka', sans-serif;
 
-  /* Premium Color Palette (Synced with teaching-web) */
+  /* Premium Color Palette (Synced with teach-math-web) */
   --bg-dark: #0a081c;
   --bg-card: rgba(255, 255, 255, 0.05);
   --bg-card-hover: rgba(255, 255, 255, 0.1);
@@ -15,7 +15,7 @@
   --text-muted: #94a3b8;
   --text-dark: #0f172a;
 
-  /* Neon Accent Colors (Synced with teaching-web) */
+  /* Neon Accent Colors (Synced with teach-math-web) */
   --accent-primary: #8b5cf6;   /* Purple */
   --accent-secondary: #06b6d4; /* Cyan */
   --accent-success: hsl(145, 80%, 45%);   /* Green */

@@ -23,7 +23,7 @@
 ### 1. 複製專案並安裝依賴
 ```bash
 # 複製儲存庫（依據您的路徑調整）
-cd class-tools-2
+cd teach-class-tools
 
 # 安裝開發依賴
 npm install
