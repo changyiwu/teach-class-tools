@@ -17,8 +17,13 @@ let raffleState = {
 };
 
 // 多位中籤時，指針每掃一格的動畫與停留時間
-const SWEEP_STEP_MS = 320;
-const SWEEP_HOLD_MS = 420;
+const SWEEP_STEP_MS = 220;
+const SWEEP_HOLD_MS = 280;
+const SLOT_SPIN_MS = 2200;
+const CARDS_REVEAL_MS = 450;  // 翻滿 N 張後到中籤畫面的停頓
+// 轉盤每 1/60 秒的減速比例，約 3 秒停下。以時間而非幀數計算，教室電視掉幀時才不會轉得更久
+const WHEEL_FRICTION = 0.97;
+const FRAME_MS = 1000 / 60;
 
 let raffleActiveClassId = '';
 
@@ -339,15 +344,18 @@ function spinWheel() {
   document.getElementById('btn-spin').disabled = true;
   
   // Spin physics
-  let rotationSpeed = Math.random() * 0.3 + 0.4; // Initial velocity rad/frame
-  let friction = 0.985; // Deceleration rate
-  
+  let rotationSpeed = Math.random() * 0.3 + 0.4; // Initial velocity rad per 1/60 s
+
   let lastTickAngle = raffleState.wheelAngle;
   const sliceAngle = (Math.PI * 2) / raffleState.pool.length;
-  
-  function anim() {
-    raffleState.wheelAngle += rotationSpeed;
-    rotationSpeed *= friction;
+  let lastTime = null;
+
+  function anim(timestamp) {
+    // 換算成經過幾個 1/60 秒；上限 6 幀，避免分頁切回來時一次跳一大段
+    const frames = lastTime === null ? 1 : Math.min(Math.max((timestamp - lastTime) / FRAME_MS, 0), 6);
+    lastTime = timestamp;
+    raffleState.wheelAngle += rotationSpeed * frames;
+    rotationSpeed *= Math.pow(WHEEL_FRICTION, frames);
     
     // Play sound click when boundary crossed
     const totalSlicesCrossed = Math.floor(raffleState.wheelAngle / sliceAngle);
@@ -368,7 +376,7 @@ function spinWheel() {
     }
   }
   
-  anim();
+  anim(performance.now());
 }
 
 function getPointerSlice() {
@@ -541,7 +549,7 @@ function spinSlot() {
   let currentY = 0;
   const targetY = itemOffset(0);
   let progress = 0;
-  const duration = 4000; // 4s
+  const duration = SLOT_SPIN_MS;
   const start = performance.now();
   
   let lastItemIndex = 0;
@@ -637,7 +645,7 @@ function selectCard(cardElement, index, name) {
   
   setTimeout(() => {
     finishDraw();
-  }, 700);
+  }, CARDS_REVEAL_MS);
 }
 
 // ==========================================
